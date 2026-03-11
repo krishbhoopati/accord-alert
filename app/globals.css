@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Merriweather:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@700;800&family=JetBrains+Mono:wght@400;500&display=swap');
 @import "tailwindcss";
 
 * {
@@ -14,28 +14,107 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* ── Landing page animations ── */
+@keyframes pulse-dot {
+  0%, 100% { opacity: 0.4; transform: scale(0.8); }
+  50%       { opacity: 1;   transform: scale(1.2); }
+}
+
+@keyframes scan-line {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(220px); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; }
+  50%       { opacity: 1; }
+}
+
+/* Badge shimmer */
+@keyframes badge-shimmer {
+  0%   { transform: translateX(-120%); }
+  100% { transform: translateX(320%); }
+}
+
+.badge-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.badge-shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
+  animation: badge-shimmer 3.5s ease-in-out infinite;
+  animation-delay: 1.5s;
+  border-radius: inherit;
+}
+
+.pulse-dot {
+  animation: pulse-dot 2s infinite ease-in-out;
+}
+
+.scanner-card:hover .scanner-line {
+  opacity: 1;
+  animation: scan-line 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.scanner-line {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.scanner-card:hover .crosshair {
+  opacity: 0.7;
+}
+
+.crosshair {
+  opacity: 0.25;
+  transition: opacity 0.2s ease;
+}
+
+/* ── Landing light theme interactions ── */
+.landing-doc-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.landing-doc-card:hover {
+  transform: perspective(1000px) rotateY(-2deg) rotateX(2deg);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.14) !important;
+}
+
+.landing-feature-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.landing-feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1) !important;
+}
+
+.landing-cta-btn {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: 0 4px 20px rgba(108,99,255,0.3);
+}
+.landing-cta-btn:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 30px rgba(108,99,255,0.45) !important;
+}
+
+/* ── Timeline animation ── */
 @keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(14px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 .timeline-event {
   animation: slideUp 0.35s ease forwards;
 }
 
-::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-track {
-  background: #F4F4F4;
-}
-::-webkit-scrollbar-thumb {
-  background: #D0D0D0;
-  border-radius: 3px;
-}
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #F4F4F4; }
+::-webkit-scrollbar-thumb { background: #D0D0D0; border-radius: 3px; }

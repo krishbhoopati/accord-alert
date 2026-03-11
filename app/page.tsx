@@ -200,33 +200,42 @@ const TIMELINE_EVENTS: TimelineEvent[] = [
 // ─── Color Constants ──────────────────────────────────────────────────────────
 
 const C = {
-  navy: '#242F40',
+  // New palette (palette.scss)
+  indigo: '#27187e',       // indigo-ink — sidebar bg, dark surfaces
+  blue: '#758bfd',         // cornflower-blue — primary accent
+  periwinkle: '#aeb8fe',   // periwinkle — muted sidebar text
+  platinum: '#f1f2f6',     // platinum — light page bg
+  orange: '#ff8600',       // princeton-orange — warnings, highlights
+
+  // Legacy neutrals kept for body content
   charcoal: '#363636',
-  gold: '#CCA43B',
   lightGray: '#E5E5E5',
   white: '#FFFFFF',
-  bgSecondary: '#F4F4F4',
-  bgTertiary: '#FAFAFA',
-  textPrimary: '#363636',
-  textSecondary: '#666666',
-  textTertiary: '#999999',
-  sidebarText: 'rgba(255,255,255,0.9)',
-  sidebarMuted: 'rgba(255,255,255,0.55)',
-  sidebarDim: 'rgba(255,255,255,0.35)',
-  sidebarBorder: 'rgba(255,255,255,0.1)',
-  green: '#2A9D6A',
+  bgSecondary: '#f1f2f6',  // now maps to platinum
+  bgTertiary: '#F8F8FB',
+  textPrimary: '#1a1a2e',
+  textSecondary: '#555570',
+  textTertiary: '#8888aa',
+
+  // Sidebar (uses indigo palette)
+  sidebarText: 'rgba(255,255,255,0.92)',
+  sidebarMuted: 'rgba(174,184,254,0.6)',
+  sidebarDim: 'rgba(174,184,254,0.35)',
+  sidebarBorder: 'rgba(117,139,253,0.15)',
+
+  // Status
+  green: '#1d8a5e',
   red: '#C94040',
-  blue: '#4A6FA5',
 };
 
 // ─── Event & Status Colors ────────────────────────────────────────────────────
 
 const EVENT_COLORS: Record<EventStatus, { border: string; iconBg: string; iconColor: string; cardBg: string }> = {
-  success: { border: '#2A9D6A', iconBg: 'rgba(42,157,106,0.1)',   iconColor: '#2A9D6A', cardBg: 'transparent' },
-  warning: { border: '#CCA43B', iconBg: 'rgba(204,164,59,0.12)',  iconColor: '#CCA43B', cardBg: 'rgba(204,164,59,0.03)' },
+  success: { border: '#1d8a5e', iconBg: 'rgba(29,138,94,0.1)',    iconColor: '#1d8a5e', cardBg: 'transparent' },
+  warning: { border: '#ff8600', iconBg: 'rgba(255,134,0,0.1)',    iconColor: '#ff8600', cardBg: 'rgba(255,134,0,0.03)' },
   danger:  { border: '#C94040', iconBg: 'rgba(201,64,64,0.1)',    iconColor: '#C94040', cardBg: 'rgba(201,64,64,0.03)' },
-  info:    { border: '#4A6FA5', iconBg: 'rgba(74,111,165,0.1)',   iconColor: '#4A6FA5', cardBg: 'rgba(74,111,165,0.03)' },
-  accent:  { border: '#CCA43B', iconBg: 'rgba(204,164,59,0.12)', iconColor: '#CCA43B', cardBg: 'rgba(204,164,59,0.04)' },
+  info:    { border: '#758bfd', iconBg: 'rgba(117,139,253,0.1)',  iconColor: '#758bfd', cardBg: 'rgba(117,139,253,0.03)' },
+  accent:  { border: '#758bfd', iconBg: 'rgba(117,139,253,0.12)', iconColor: '#758bfd', cardBg: 'rgba(117,139,253,0.04)' },
 };
 
 const ICON_TEXT: Record<string, string> = {
@@ -234,15 +243,15 @@ const ICON_TEXT: Record<string, string> = {
 };
 
 const FINAL_STATUS: Record<FinalStatus, { label: string; color: string; bg: string; rowBg: string }> = {
-  fulfilled: { label: 'Fulfilled', color: '#2A9D6A', bg: 'rgba(42,157,106,0.1)',  rowBg: 'transparent' },
-  breached:  { label: 'Breached',  color: '#C94040', bg: 'rgba(201,64,64,0.1)',   rowBg: 'rgba(201,64,64,0.03)' },
-  cured:     { label: 'Cured',     color: '#4A6FA5', bg: 'rgba(74,111,165,0.1)',  rowBg: 'rgba(74,111,165,0.03)' },
+  fulfilled: { label: 'Fulfilled', color: '#1d8a5e', bg: 'rgba(29,138,94,0.1)',   rowBg: 'transparent' },
+  breached:  { label: 'Breached',  color: '#C94040', bg: 'rgba(201,64,64,0.18)',   rowBg: 'rgba(201,64,64,0.07)' },
+  cured:     { label: 'Cured',     color: '#4f6ef7', bg: 'rgba(79,110,247,0.18)',  rowBg: 'rgba(79,110,247,0.07)' },
 };
 
 // ─── Button Style Helpers ─────────────────────────────────────────────────────
 
 const btnPrimary: React.CSSProperties = {
-  background: '#363636',
+  background: '#27187e',
   color: 'white',
   border: 'none',
   borderRadius: 999,
@@ -254,8 +263,8 @@ const btnPrimary: React.CSSProperties = {
 };
 
 const btnGold: React.CSSProperties = {
-  background: '#CCA43B',
-  color: '#363636',
+  background: '#758bfd',
+  color: '#ffffff',
   border: 'none',
   borderRadius: 999,
   padding: '10px 24px',
@@ -267,8 +276,8 @@ const btnGold: React.CSSProperties = {
 
 const btnSecondary: React.CSSProperties = {
   background: 'transparent',
-  color: '#363636',
-  border: '1px solid #E5E5E5',
+  color: '#27187e',
+  border: '1px solid #aeb8fe',
   borderRadius: 999,
   padding: '9px 20px',
   fontFamily: 'Inter, sans-serif',
@@ -280,7 +289,7 @@ const btnSecondary: React.CSSProperties = {
 const btnNavyOutline: React.CSSProperties = {
   background: 'transparent',
   color: 'rgba(255,255,255,0.8)',
-  border: '1px solid rgba(255,255,255,0.2)',
+  border: '1px solid rgba(174,184,254,0.25)',
   borderRadius: 999,
   padding: '7px 14px',
   fontFamily: 'Inter, sans-serif',
@@ -295,7 +304,7 @@ function Sidebar({ children }: { children: React.ReactNode }) {
     <aside style={{
       width: 240,
       flexShrink: 0,
-      background: '#242F40',
+      background: '#27187e',
       display: 'flex',
       flexDirection: 'column',
       height: '100vh',
@@ -305,12 +314,12 @@ function Sidebar({ children }: { children: React.ReactNode }) {
       {/* Brand */}
       <div style={{ padding: '0 28px 32px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
-          <span style={{ fontSize: 16, color: '#CCA43B' }}>◈</span>
-          <span style={{ fontFamily: 'Playfair Display, serif', fontSize: 18, fontWeight: 600, color: 'white', letterSpacing: -0.3 }}>AccordAlert</span>
+          <span style={{ fontSize: 16, color: '#aeb8fe' }}>◈</span>
+          <span style={{ fontFamily: 'Plus Jakarta Sans, sans-serif', fontSize: 18, fontWeight: 800, color: 'white', letterSpacing: -0.5 }}>AccordAlert</span>
         </div>
-        <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', letterSpacing: 0.3 }}>Definitely-Not-Evil-Corp Inc.</span>
+        <span style={{ fontSize: 11, color: 'rgba(174,184,254,0.5)', letterSpacing: 0.3 }}>Definitely-Not-Evil-Corp Inc.</span>
       </div>
-      <div style={{ borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: 24 }}>
+      <div style={{ borderTop: '1px solid rgba(117,139,253,0.2)', paddingTop: 24 }}>
         {children}
       </div>
     </aside>
@@ -320,7 +329,7 @@ function Sidebar({ children }: { children: React.ReactNode }) {
 function NavSection({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div style={{ marginBottom: 28 }}>
-      <p style={{ fontFamily: 'Playfair Display, serif', fontSize: 13, fontWeight: 600, color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase' as const, letterSpacing: 1.2, padding: '0 28px', marginBottom: 8 }}>{title}</p>
+      <p style={{ fontFamily: 'Inter, sans-serif', fontSize: 10.5, fontWeight: 600, color: 'rgba(174,184,254,0.45)', textTransform: 'uppercase' as const, letterSpacing: 1.5, padding: '0 28px', marginBottom: 8 }}>{title}</p>
       {children}
     </div>
   );
@@ -330,12 +339,12 @@ function NavItem({ label, active, badge, onClick }: { label: string; active?: bo
   return (
     <div onClick={onClick} style={{ position: 'relative', cursor: onClick ? 'pointer' : 'default' }}>
       {active && (
-        <div style={{ position: 'absolute', left: 0, top: '50%', transform: 'translateY(-50%)', width: 3, height: 20, background: '#CCA43B', borderRadius: '0 2px 2px 0' }} />
+        <div style={{ position: 'absolute', left: 0, top: '50%', transform: 'translateY(-50%)', width: 3, height: 20, background: '#aeb8fe', borderRadius: '0 2px 2px 0' }} />
       )}
       <div style={{ padding: '9px 28px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <span style={{ fontSize: 13, color: active ? 'white' : 'rgba(255,255,255,0.55)', fontWeight: active ? 500 : 400 }}>{label}</span>
+        <span style={{ fontSize: 13, color: active ? 'white' : 'rgba(174,184,254,0.65)', fontWeight: active ? 600 : 400 }}>{label}</span>
         {badge !== undefined && (
-          <span style={{ background: 'rgba(204,164,59,0.25)', color: '#CCA43B', fontSize: 11, fontWeight: 600, padding: '1px 7px', borderRadius: 999, border: '1px solid rgba(204,164,59,0.3)' }}>{badge}</span>
+          <span style={{ background: 'rgba(117,139,253,0.25)', color: '#aeb8fe', fontSize: 11, fontWeight: 600, padding: '1px 7px', borderRadius: 999, border: '1px solid rgba(117,139,253,0.4)' }}>{badge}</span>
         )}
       </div>
     </div>
@@ -363,27 +372,46 @@ function CircularProgress({ pct }: { pct: number }) {
 // ─── Contract Document ────────────────────────────────────────────────────────
 
 function ContractDoc({ onSelect, selectedId }: { onSelect: (id: string) => void; selectedId: string | null }) {
+  // Show the "click me" nudge on obl-1 until user has clicked anything
+  const showNudge = selectedId === null;
+
   const h = (id: string, type: OblType, text: React.ReactNode) => {
     const sel = selectedId === id;
+    const isNudge = showNudge && id === 'obl-1';
     const bg = type === "ours"
-      ? (sel ? 'rgba(204,164,59,0.35)' : 'rgba(204,164,59,0.18)')
-      : (sel ? 'rgba(36,47,64,0.18)' : 'rgba(36,47,64,0.09)');
-    const borderColor = type === "ours" ? '#CCA43B' : 'rgba(36,47,64,0.5)';
-    const borderStyle = type === "ours" ? '2px solid #CCA43B' : '2px dashed rgba(36,47,64,0.5)';
+      ? (sel ? 'rgba(255,134,0,0.28)' : 'rgba(255,134,0,0.13)')
+      : (sel ? 'rgba(117,139,253,0.22)' : 'rgba(117,139,253,0.1)');
+    const borderColor = type === "ours" ? '#ff8600' : '#758bfd';
+    const borderStyle = type === "ours" ? '2px solid #ff8600' : '2px dashed #758bfd';
     return (
-      <span
-        onClick={(e) => { e.stopPropagation(); onSelect(id); }}
-        style={{
-          background: bg,
-          borderBottom: borderStyle,
-          cursor: 'pointer',
-          borderRadius: 2,
-          outline: sel ? `2px solid ${borderColor}` : 'none',
-          outlineOffset: 1,
-          transition: 'background 0.15s',
-        }}
-      >
-        {text}
+      <span style={{ position: 'relative', display: 'inline' }}>
+        {isNudge && (
+          <span style={{
+            position: 'absolute', top: '-30px', left: '50%', transform: 'translateX(-50%)',
+            background: '#27187e', color: '#fff', fontSize: 11, fontWeight: 600,
+            padding: '4px 9px', borderRadius: 999, whiteSpace: 'nowrap' as const,
+            fontFamily: 'Inter, sans-serif', pointerEvents: 'none', zIndex: 10,
+            boxShadow: '0 2px 8px rgba(39,24,126,0.35)',
+          }}>
+            👆 click me
+            {/* Tail */}
+            <span style={{ position: 'absolute', bottom: -5, left: '50%', transform: 'translateX(-50%)', width: 0, height: 0, borderLeft: '5px solid transparent', borderRight: '5px solid transparent', borderTop: '5px solid #27187e' }} />
+          </span>
+        )}
+        <span
+          onClick={(e) => { e.stopPropagation(); onSelect(id); }}
+          style={{
+            background: bg,
+            borderBottom: borderStyle,
+            cursor: 'pointer',
+            borderRadius: 2,
+            outline: sel ? `2px solid ${borderColor}` : 'none',
+            outlineOffset: 1,
+            transition: 'background 0.15s',
+          }}
+        >
+          {text}
+        </span>
       </span>
     );
   };
@@ -408,19 +436,37 @@ function ContractDoc({ onSelect, selectedId }: { onSelect: (id: string) => void;
       {/* Legend */}
       <div style={{ display: 'flex', gap: 20, marginBottom: 20, padding: '10px 14px', background: '#F2F0EC', borderRadius: 4, border: '1px solid #E0DDD6' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 11.5, color: '#444' }}>
-          <span style={{ width: 12, height: 12, borderRadius: 2, background: 'rgba(204,164,59,0.35)', border: '2px solid #CCA43B', display: 'inline-block' }} />
+          <span style={{ width: 12, height: 12, borderRadius: 2, background: 'rgba(255,134,0,0.2)', border: '2px solid #ff8600', display: 'inline-block' }} />
           Our Obligations (Client)
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 11.5, color: '#444' }}>
-          <span style={{ width: 12, height: 12, borderRadius: 2, background: 'rgba(36,47,64,0.18)', border: '2px dashed rgba(36,47,64,0.5)', display: 'inline-block' }} />
+          <span style={{ width: 12, height: 12, borderRadius: 2, background: 'rgba(117,139,253,0.15)', border: '2px dashed #758bfd', display: 'inline-block' }} />
           Monitored Obligations (Contractor)
         </div>
       </div>
 
-      <h1 style={{ textAlign: 'center', fontSize: 15, fontWeight: 700, letterSpacing: 3, textTransform: 'uppercase', margin: '0 0 4px', fontFamily: "'Merriweather', serif" }}>
+      <h1 style={{ textAlign: 'center', fontSize: 15, fontWeight: 700, letterSpacing: 3, textTransform: 'uppercase', margin: '0 0 8px', fontFamily: "'Merriweather', serif" }}>
         Service Agreement
       </h1>
-      <p style={{ textAlign: 'center', fontSize: 11.5, color: '#666', margin: '0 0 22px' }}>(the &ldquo;Agreement&rdquo;)</p>
+      <p style={{ textAlign: 'center', fontSize: 12.5, color: '#444', margin: '0 0 14px', fontFamily: "'Merriweather', serif", fontStyle: 'italic' }}>
+        For Office Renovation and Construction Services
+      </p>
+      <div style={{ textAlign: 'center', margin: '0 0 20px', padding: '10px 0', borderTop: '1px solid #D8D4CC', borderBottom: '1px solid #D8D4CC' }}>
+        <table style={{ margin: '0 auto', borderCollapse: 'collapse' }}>
+          <tbody>
+            {[
+              ['Agreement No.', 'DNEC-2025-0041'],
+              ['Effective Date', 'January 15, 2025'],
+              ['Project', '100 Bay Street Office Renovation'],
+            ].map(([label, value]) => (
+              <tr key={label}>
+                <td style={{ fontSize: 10.5, color: '#888', fontFamily: 'Inter, sans-serif', paddingRight: 16, paddingBottom: 3, fontWeight: 500, letterSpacing: 0.2 }}>{label}:</td>
+                <td style={{ fontSize: 10.5, color: '#444', fontFamily: 'Inter, sans-serif', paddingBottom: 3 }}>{value}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
 
       <div style={{ borderTop: '1px solid #D0CCC6', paddingTop: 18 }}>
         <p style={p}>This Service Agreement (&ldquo;Agreement&rdquo;) is entered into as of <strong>January 15, 2025</strong>, by and between:</p>
@@ -483,6 +529,8 @@ export default function AccordAlert() {
   const [legalEngaged, setLegalEngaged] = useState(false);
   const [damagesInitiated, setDamagesInitiated] = useState(false);
 
+  const [activeSection, setActiveSection] = useState<string>('score');
+
   const timelineScrollRef = useRef<HTMLDivElement>(null);
   const reportScrollRef = useRef<HTMLDivElement>(null);
 
@@ -496,7 +544,38 @@ export default function AccordAlert() {
   useEffect(() => {
     if (screen !== 'report' || !reportScrollRef.current) return;
     reportScrollRef.current.scrollTop = 0;
+    setActiveSection('score');
   }, [screen]);
+
+  // Scroll-spy: update active nav section as the report scrolls
+  useEffect(() => {
+    if (screen !== 'report') return;
+    let observer: IntersectionObserver | null = null;
+    const timer = setTimeout(() => {
+      const container = reportScrollRef.current;
+      if (!container) return;
+      observer = new IntersectionObserver(
+        (entries) => {
+          const visible = entries
+            .filter((e) => e.isIntersecting)
+            .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+          if (visible.length > 0) {
+            setActiveSection(visible[0].target.id.replace('section-', ''));
+          }
+        },
+        { root: container, rootMargin: '-5% 0px -55% 0px', threshold: 0 }
+      );
+      ['score', 'breakdown', 'breach', 'prevention', 'legal'].forEach((id) => {
+        const el = document.getElementById(`section-${id}`);
+        if (el) observer!.observe(el);
+      });
+    }, 150);
+    return () => { clearTimeout(timer); observer?.disconnect(); };
+  }, [screen]);
+
+  const scrollToSection = (id: string) => {
+    document.getElementById(`section-${id}`)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
 
   // Timeline animation
   useEffect(() => {
@@ -527,82 +606,124 @@ export default function AccordAlert() {
   // ─────────────────────────────────────────────────────────────────────────────
 
   if (screen === 'landing') {
+    // Placeholder lines with obligation-hint borders for the preview card
+    const previewLines = [
+      { opacity: 0.95, width: '100%', border: 'none',   color: 'orange' as const },
+      { opacity: 0.80, width:  '88%', border: 'orange', color: 'orange' as const },
+      { opacity: 0.70, width: '100%', border: 'none',   color: null },
+      { opacity: 0.90, width:  '92%', border: 'blue',   color: 'blue' as const },
+      { opacity: 0.65, width: '100%', border: 'blue',   color: 'blue' as const },
+      { opacity: 0.75, width:  '80%', border: 'none',   color: null },
+      { opacity: 0.60, width:  '95%', border: 'blue',   color: 'blue' as const },
+    ];
+
     return (
-      <div style={{ display: 'flex', height: '100vh', overflow: 'hidden', fontFamily: 'Inter, sans-serif' }}>
-        {/* Sidebar */}
-        <Sidebar>
-          <NavSection title="Platform">
-            <NavItem label="Contract Analysis" active />
-            <NavItem label="Timeline Simulation" />
-            <NavItem label="Compliance Report" />
-          </NavSection>
-          <NavSection title="About">
-            <NavItem label="How It Works" />
-            <NavItem label="Legal Framework" />
-          </NavSection>
-        </Sidebar>
+      <div style={{ minHeight: '100vh', background: '#FFFFFF', color: '#111827', fontFamily: 'Inter, sans-serif', position: 'relative' }}>
+
+        {/* Graph paper grid */}
+        <div style={{
+          position: 'fixed', inset: 0, pointerEvents: 'none', zIndex: 0,
+          backgroundImage: 'repeating-linear-gradient(rgba(0,0,0,0.06) 0px, rgba(0,0,0,0.06) 1px, transparent 1px, transparent 48px), repeating-linear-gradient(90deg, rgba(0,0,0,0.06) 0px, rgba(0,0,0,0.06) 1px, transparent 1px, transparent 48px)',
+          backgroundSize: '48px 48px',
+        }} />
+
+        {/* Soft purple blob behind headline */}
+        <div style={{
+          position: 'fixed', top: '5%', left: '50%', transform: 'translateX(-50%)',
+          width: 820, height: 560,
+          background: 'radial-gradient(ellipse at center, rgba(108,99,255,0.06) 0%, transparent 68%)',
+          pointerEvents: 'none', zIndex: 0,
+        }} />
+
+        {/* Header */}
+        <div style={{ position: 'relative', zIndex: 10, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '18px 48px', borderBottom: '1px solid #E5E7EB', background: 'rgba(255,255,255,0.9)', backdropFilter: 'blur(8px)' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 9 }}>
+            <span style={{ fontSize: 18, color: '#6C63FF' }}>◈</span>
+            <span style={{ fontFamily: 'Plus Jakarta Sans, sans-serif', fontSize: 19, fontWeight: 800, color: '#111827', letterSpacing: -0.5 }}>AccordAlert</span>
+          </div>
+          <span style={{ fontSize: 12, color: '#9CA3AF', letterSpacing: 0.2 }}>Definitely-Not-Evil-Corp Inc.</span>
+        </div>
 
         {/* Main content */}
-        <div style={{ flex: 1, overflowY: 'auto', background: C.white }}>
-          {/* Header */}
-          <div style={{ padding: '28px 40px', borderBottom: `1px solid ${C.lightGray}` }}>
-            <h1 style={{ fontFamily: 'Playfair Display, serif', fontSize: 32, fontWeight: 600, color: C.charcoal, margin: '0 0 6px', letterSpacing: -0.5 }}>Contract Compliance Platform</h1>
-            <p style={{ fontSize: 15, color: C.textSecondary, margin: 0 }}>AI-powered monitoring to prevent breach of contract and minimize legal risk.</p>
+        <div style={{ position: 'relative', zIndex: 10, maxWidth: 860, margin: '0 auto', padding: '72px 40px 88px', textAlign: 'center' }}>
+
+          {/* Badges */}
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 10, marginBottom: 36 }}>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: 7, padding: '5px 14px', borderRadius: 999, background: '#EEF2FF', border: '1px solid #C7D2FE', fontFamily: 'JetBrains Mono, monospace', fontSize: 10.5, textTransform: 'uppercase' as const, letterSpacing: '0.07em', color: '#6C63FF' }}>
+              <span style={{ width: 5, height: 5, borderRadius: '50%', background: '#6C63FF', display: 'inline-block' }} />
+              Contract Intelligence Engine
+            </div>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: 7, padding: '5px 14px', borderRadius: 999, background: '#F0FDF4', border: '1px solid #BBF7D0', fontFamily: 'JetBrains Mono, monospace', fontSize: 10.5, textTransform: 'uppercase' as const, letterSpacing: '0.07em', color: '#16A34A' }}>
+              <span className="pulse-dot" style={{ width: 5, height: 5, borderRadius: '50%', background: '#16A34A', display: 'inline-block' }} />
+              Active
+            </div>
           </div>
 
-          {/* Content area */}
-          <div style={{ padding: 40 }}>
-            {/* Tagline badge */}
-            <div style={{ marginBottom: 32 }}>
-              <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: 'rgba(204,164,59,0.12)', border: '1px solid rgba(204,164,59,0.3)', color: C.gold, borderRadius: 999, padding: '5px 14px', fontSize: 12, fontWeight: 500 }}>
-                <span style={{ width: 6, height: 6, background: C.gold, borderRadius: '50%', display: 'inline-block' }} />
-                AI-Powered Compliance Monitoring
-              </span>
-            </div>
+          {/* Headline */}
+          <h1 style={{ fontFamily: 'Plus Jakarta Sans, sans-serif', fontSize: 'clamp(36px, 5.5vw, 60px)', fontWeight: 800, letterSpacing: -2.5, lineHeight: 1.06, marginBottom: 22, color: '#111827' }}>
+            Monitor Contracts.<br />Prevent Breaches.
+          </h1>
 
-            {/* Document preview card */}
-            <div style={{ maxWidth: 480, margin: '0 auto 40px', background: '#F8F7F3', border: '1px solid #E0DDD6', borderRadius: 8, boxShadow: '0 4px 20px rgba(0,0,0,0.07), 0 1px 4px rgba(0,0,0,0.04)', padding: 28, color: '#1C1C1C' }}>
-              <p style={{ textAlign: 'center', fontSize: 13, fontWeight: 700, letterSpacing: 3, textTransform: 'uppercase', margin: '0 0 12px', fontFamily: 'Playfair Display, serif' }}>SERVICE AGREEMENT</p>
-              <div style={{ borderTop: '1px solid #D8D4CC', paddingTop: 14, fontFamily: 'Merriweather, serif' }}>
-                <p style={{ fontSize: 11, color: '#555', margin: '0 0 10px' }}>This Service Agreement is entered into as of January 15, 2025, by and between:</p>
-                <p style={{ fontSize: 11, color: '#555', margin: '0 0 14px', paddingLeft: 12 }}>
-                  <strong>Party A:</strong> Definitely-Not-Evil-Corp Inc. (&ldquo;Client&rdquo;)<br />
-                  <strong>Party B:</strong> Maple Leaf Construction Ltd. (&ldquo;Contractor&rdquo;)
-                </p>
-                {[1, 2, 3].map((i) => (
-                  <div key={i} style={{ height: 8, background: '#E8E4DC', borderRadius: 2, margin: '6px 0', opacity: 1 - i * 0.15 }} />
-                ))}
-                <div style={{ margin: '14px 0 6px', height: 1, background: '#D8D4CC' }} />
-                {[0.9, 0.7, 0.85, 0.6].map((op, i) => (
-                  <div key={i} style={{ height: 7, background: '#E8E4DC', borderRadius: 2, margin: '5px 0', opacity: op, width: `${70 + i * 7}%` }} />
-                ))}
-                <div style={{ marginTop: 18, display: 'flex', gap: 40 }}>
-                  <div style={{ flex: 1 }}><div style={{ borderBottom: '1px solid #888', height: 18, marginBottom: 4 }} /><div style={{ height: 6, background: '#E0DCD4', borderRadius: 2 }} /></div>
-                  <div style={{ flex: 1 }}><div style={{ borderBottom: '1px solid #888', height: 18, marginBottom: 4 }} /><div style={{ height: 6, background: '#E0DCD4', borderRadius: 2 }} /></div>
-                </div>
+          {/* Subheading */}
+          <p style={{ fontSize: 16, color: '#6B7280', maxWidth: 520, margin: '0 auto 52px', lineHeight: 1.65, letterSpacing: -0.1 }}>
+            Upload a contract to automatically extract obligations, track deadlines, and detect compliance risks before they become costly legal disputes.
+          </p>
+
+          {/* Contract preview card — with hover tilt + obligation hints */}
+          <div className="landing-doc-card" style={{ maxWidth: 460, margin: '0 auto 36px', background: '#F8F7F3', border: '1px solid #D1D5DB', borderRadius: 14, boxShadow: '0 4px 24px rgba(0,0,0,0.08)', padding: '28px 32px', color: '#1C1C1C', textAlign: 'left' }}>
+            <p style={{ textAlign: 'center', fontSize: 12, fontWeight: 700, letterSpacing: 3.5, textTransform: 'uppercase' as const, margin: '0 0 14px', fontFamily: 'Merriweather, serif', color: '#2a2a2a' }}>Service Agreement</p>
+            <div style={{ borderTop: '1px solid #D8D4CC', paddingTop: 14, fontFamily: 'Merriweather, serif' }}>
+              <p style={{ fontSize: 10.5, color: '#555', margin: '0 0 8px', lineHeight: 1.6 }}>This Service Agreement is entered into as of <strong>January 15, 2025</strong>, by and between:</p>
+              <p style={{ fontSize: 10.5, color: '#555', margin: '0 0 14px', paddingLeft: 12, lineHeight: 1.6 }}>
+                <strong>Party A:</strong> Definitely-Not-Evil-Corp Inc.<br />
+                <strong>Party B:</strong> Maple Leaf Construction Ltd.
+              </p>
+              {/* Placeholder body lines with obligation-hint borders */}
+              {previewLines.map((line, i) => (
+                <div key={i} style={{
+                  height: 7, borderRadius: 2, margin: '6px 0',
+                  width: line.width, opacity: line.opacity,
+                  background: line.border === 'orange' ? 'rgba(255,134,0,0.18)' : line.border === 'blue' ? 'rgba(117,139,253,0.15)' : '#E8E4DC',
+                  borderLeft: line.border === 'orange' ? '3px solid rgba(255,134,0,0.55)' : line.border === 'blue' ? '3px solid rgba(117,139,253,0.5)' : '3px solid transparent',
+                }} />
+              ))}
+              <div style={{ marginTop: 16, display: 'flex', gap: 36 }}>
+                <div style={{ flex: 1 }}><div style={{ borderBottom: '1px solid #aaa', height: 18, marginBottom: 4 }} /><div style={{ height: 5, background: '#E0DCD4', borderRadius: 2 }} /></div>
+                <div style={{ flex: 1 }}><div style={{ borderBottom: '1px solid #aaa', height: 18, marginBottom: 4 }} /><div style={{ height: 5, background: '#E0DCD4', borderRadius: 2 }} /></div>
               </div>
             </div>
+          </div>
 
-            {/* Buttons */}
-            <div style={{ display: 'flex', gap: 12, justifyContent: 'center', marginBottom: 48 }}>
-              <button style={btnSecondary}>Load Sample Contract</button>
-              <button onClick={() => setScreen('analysis')} style={btnGold}>Upload &amp; Analyze Contract →</button>
-            </div>
+          {/* CTA */}
+          <button
+            className="landing-cta-btn"
+            onClick={() => setScreen('analysis')}
+            style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: '#6C63FF', color: '#fff', border: 'none', borderRadius: 999, padding: '14px 32px', fontFamily: 'Inter, sans-serif', fontSize: 15, fontWeight: 600, cursor: 'pointer', marginBottom: 48 }}
+          >
+            Upload &amp; Analyze Contract
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
+          </button>
 
-            {/* Feature cards */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16 }}>
-              {[
-                { title: 'Obligation Extraction', desc: 'AI identifies every deadline, deliverable, and duty from your contracts', icon: '◈' },
-                { title: 'Breach Detection', desc: 'Real-time monitoring flags missed deadlines before they escalate', icon: '⚑' },
-                { title: 'Compliance Reporting', desc: 'Automated reports with legal risk assessment and recommended actions', icon: '◧' },
-              ].map((f) => (
-                <div key={f.title} style={{ background: C.bgTertiary, border: `1px solid ${C.lightGray}`, borderRadius: 8, padding: '20px 18px' }}>
-                  <div style={{ width: 36, height: 36, background: 'rgba(204,164,59,0.1)', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18, color: C.gold, marginBottom: 14 }}>{f.icon}</div>
-                  <p style={{ margin: '0 0 6px', fontWeight: 600, fontSize: 14, color: C.charcoal, fontFamily: 'Playfair Display, serif' }}>{f.title}</p>
-                  <p style={{ margin: 0, fontSize: 13, color: C.textSecondary, lineHeight: 1.55 }}>{f.desc}</p>
+          {/* Gradient divider */}
+          <div style={{ height: 1, background: 'linear-gradient(90deg, transparent, rgba(108,99,255,0.25), transparent)', margin: '0 auto 48px', maxWidth: 480 }} />
+
+          {/* Feature cards */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 14, textAlign: 'left' }}>
+            {[
+              { title: 'Obligation Extraction', desc: 'AI identifies every deadline, deliverable, and duty from your contracts', icon: '◈', iconColor: '#6C63FF', iconBg: '#EEF2FF', accent: '#6C63FF' },
+              { title: 'Breach Detection',      desc: 'Real-time monitoring flags missed deadlines before they escalate',          icon: '⚑', iconColor: '#D97706', iconBg: '#FFFBEB', accent: '#F59E0B' },
+              { title: 'Compliance Reporting',  desc: 'Automated reports with legal risk assessment and recommended actions',      icon: '◧', iconColor: '#059669', iconBg: '#ECFDF5', accent: '#10B981' },
+            ].map(f => (
+              <div key={f.title} className="landing-feature-card" style={{ background: '#FFFFFF', border: '1px solid #E5E7EB', borderRadius: 10, padding: '0', overflow: 'hidden', boxShadow: '0 1px 4px rgba(0,0,0,0.05)' }}>
+                {/* Top accent bar */}
+                <div style={{ height: 3, background: f.accent }} />
+                <div style={{ padding: '18px 18px 20px' }}>
+                  <div style={{ width: 36, height: 36, background: f.iconBg, borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 17, color: f.iconColor, marginBottom: 14 }}>{f.icon}</div>
+                  <p style={{ margin: '0 0 6px', fontWeight: 700, fontSize: 13.5, color: '#111827', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>{f.title}</p>
+                  <p style={{ margin: 0, fontSize: 12.5, color: '#6B7280', lineHeight: 1.55 }}>{f.desc}</p>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
@@ -620,9 +741,6 @@ export default function AccordAlert() {
         <Sidebar>
           <NavSection title="Document">
             <NavItem label="Overview" active />
-            <NavItem label="Obligations" />
-            <NavItem label="Payments" />
-            <NavItem label="Breach & Remedies" />
           </NavSection>
           <NavSection title="Analysis">
             <NavItem label="Our Obligations" badge={4} />
@@ -631,8 +749,8 @@ export default function AccordAlert() {
           </NavSection>
           {/* Bottom info card */}
           <div style={{ padding: '0 20px', marginTop: 8 }}>
-            <div style={{ background: 'rgba(204,164,59,0.12)', border: '1px solid rgba(204,164,59,0.25)', borderRadius: 8, padding: '12px 14px' }}>
-              <p style={{ margin: 0, fontSize: 12, color: '#CCA43B', fontWeight: 600 }}>10 obligations identified</p>
+            <div style={{ background: 'rgba(117,139,253,0.12)', border: '1px solid rgba(117,139,253,0.25)', borderRadius: 8, padding: '12px 14px' }}>
+              <p style={{ margin: 0, fontSize: 12, color: '#aeb8fe', fontWeight: 600 }}>10 obligations identified</p>
             </div>
           </div>
         </Sidebar>
@@ -658,7 +776,7 @@ export default function AccordAlert() {
         </div>
 
         {/* Right panel */}
-        <div style={{ width: 300, flexShrink: 0, background: C.bgSecondary, borderLeft: `1px solid ${C.lightGray}`, overflowY: 'auto' }}>
+        <div style={{ width: 400, flexShrink: 0, background: C.bgSecondary, borderLeft: `1px solid ${C.lightGray}`, overflowY: 'auto' }}>
           {/* Panel header */}
           <div style={{ padding: '20px 20px 16px', borderBottom: `1px solid ${C.lightGray}` }}>
             <h3 style={{ fontFamily: 'Playfair Display, serif', fontSize: 18, fontWeight: 600, color: C.charcoal, margin: 0 }}>AI Review Summary</h3>
@@ -673,12 +791,12 @@ export default function AccordAlert() {
                 </div>
                 {/* Summary stats */}
                 <div style={{ display: 'flex', gap: 10 }}>
-                  <div style={{ flex: 1, background: 'rgba(204,164,59,0.1)', border: '1px solid rgba(204,164,59,0.25)', borderRadius: 8, padding: '12px 14px' }}>
-                    <p style={{ margin: 0, fontSize: 22, fontWeight: 700, color: C.gold }}>4</p>
+                  <div style={{ flex: 1, background: 'rgba(255,134,0,0.08)', border: '1px solid rgba(255,134,0,0.2)', borderRadius: 8, padding: '12px 14px' }}>
+                    <p style={{ margin: 0, fontSize: 22, fontWeight: 700, color: '#ff8600' }}>4</p>
                     <p style={{ margin: '2px 0 0', fontSize: 11, color: C.textSecondary }}>Our Obligations</p>
                   </div>
-                  <div style={{ flex: 1, background: 'rgba(36,47,64,0.07)', border: '1px solid rgba(36,47,64,0.15)', borderRadius: 8, padding: '12px 14px' }}>
-                    <p style={{ margin: 0, fontSize: 22, fontWeight: 700, color: C.navy }}>6</p>
+                  <div style={{ flex: 1, background: 'rgba(117,139,253,0.07)', border: '1px solid rgba(117,139,253,0.18)', borderRadius: 8, padding: '12px 14px' }}>
+                    <p style={{ margin: 0, fontSize: 22, fontWeight: 700, color: '#758bfd' }}>6</p>
                     <p style={{ margin: '2px 0 0', fontSize: 11, color: C.textSecondary }}>Monitored Obligations</p>
                   </div>
                 </div>
@@ -688,7 +806,7 @@ export default function AccordAlert() {
                 {/* Card header row */}
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                    <span style={{ fontSize: 8, width: 8, height: 8, borderRadius: '50%', background: selectedObl.type === 'ours' ? C.gold : C.navy, display: 'inline-block', flexShrink: 0 }} />
+                    <span style={{ fontSize: 8, width: 8, height: 8, borderRadius: '50%', background: selectedObl.type === 'ours' ? '#ff8600' : '#758bfd', display: 'inline-block', flexShrink: 0 }} />
                     <span style={{ fontSize: 11, textTransform: 'uppercase' as const, letterSpacing: 0.6, color: C.textSecondary, fontWeight: 500 }}>
                       {selectedObl.type === 'ours' ? 'Our Obligation' : 'Monitored Obligation'}
                     </span>
@@ -746,7 +864,7 @@ export default function AccordAlert() {
           <NavSection title="Progress">
             <div style={{ padding: '0 28px', marginBottom: 12 }}>
               <div style={{ height: 4, background: C.lightGray, borderRadius: 2, overflow: 'hidden', marginBottom: 6 }}>
-                <div style={{ width: `${(visibleEvents / TIMELINE_EVENTS.length) * 100}%`, height: '100%', background: C.gold, borderRadius: 2, transition: 'width 0.4s ease' }} />
+                <div style={{ width: `${(visibleEvents / TIMELINE_EVENTS.length) * 100}%`, height: '100%', background: '#758bfd', borderRadius: 2, transition: 'width 0.4s ease' }} />
               </div>
               <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.55)' }}>{visibleEvents} of {TIMELINE_EVENTS.length} events</span>
             </div>
@@ -755,7 +873,7 @@ export default function AccordAlert() {
             <div style={{ padding: '0 28px', display: 'flex', flexDirection: 'column', gap: 8 }}>
               {[
                 { label: 'Success', color: C.green },
-                { label: 'Warning', color: C.gold },
+                { label: 'Warning', color: '#758bfd' },
                 { label: 'Breach', color: C.red },
                 { label: 'Legal Process', color: C.blue },
               ].map((t) => (
@@ -831,11 +949,11 @@ export default function AccordAlert() {
       {/* Sidebar */}
       <Sidebar>
         <NavSection title="Report Sections">
-          <NavItem label="Compliance Score" active />
-          <NavItem label="Obligation Breakdown" />
-          <NavItem label="Breach Analysis" />
-          <NavItem label="Prevention Insights" />
-          <NavItem label="Legal Reference" />
+          <NavItem label="Compliance Score"    active={activeSection === 'score'}      onClick={() => scrollToSection('score')} />
+          <NavItem label="Obligation Breakdown" active={activeSection === 'breakdown'}  onClick={() => scrollToSection('breakdown')} />
+          <NavItem label="Breach Analysis"     active={activeSection === 'breach'}     onClick={() => scrollToSection('breach')} />
+          <NavItem label="Prevention Insights" active={activeSection === 'prevention'} onClick={() => scrollToSection('prevention')} />
+          <NavItem label="Legal Reference"     active={activeSection === 'legal'}      onClick={() => scrollToSection('legal')} />
         </NavSection>
         <NavSection title="Summary">
           <div style={{ padding: '0 28px', display: 'flex', flexDirection: 'column', gap: 8 }}>
@@ -861,22 +979,26 @@ export default function AccordAlert() {
         <div style={{ height: 64, display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: `1px solid ${C.lightGray}`, padding: '0 36px', flexShrink: 0 }}>
           <div>
             <h2 style={{ fontFamily: 'Playfair Display, serif', fontSize: 22, fontWeight: 600, color: C.charcoal, margin: 0, letterSpacing: -0.3 }}>Compliance Report</h2>
-            <p style={{ margin: 0, fontSize: 12, color: C.textTertiary }}>Service Agreement — Maple Leaf Construction Ltd. | Sept 22, 2025</p>
+            <p style={{ margin: 0, fontSize: 12, color: C.textTertiary }}>Service Agreement — Definitely-Not-Evil-Corp Inc. | Sept 22, 2025</p>
           </div>
-          <button onClick={() => setScreen('timeline')} style={btnSecondary}>← Back to Timeline</button>
+          <div style={{ display: 'flex', gap: 10 }}>
+            <button onClick={() => setScreen('timeline')} style={btnSecondary}>← Back to Timeline</button>
+            <button onClick={() => setScreen('landing')} style={btnGold}>⌂ New Analysis</button>
+          </div>
         </div>
 
         {/* Report content */}
         <div ref={reportScrollRef} style={{ flex: 1, overflowY: 'auto', padding: 36 }}>
 
           {/* Score card */}
-          <div style={{ background: C.white, border: `1px solid ${C.lightGray}`, borderRadius: 8, padding: 28, marginBottom: 20, display: 'flex', alignItems: 'center', gap: 28 }}>
+          <div id="section-score" style={{ background: C.white, border: `1px solid ${C.lightGray}`, borderRadius: 8, padding: 28, marginBottom: 20, display: 'flex', alignItems: 'center', gap: 28 }}>
             <CircularProgress pct={80} />
             <div>
               <p style={{ margin: '0 0 4px', fontSize: 11, fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: 1, color: C.textTertiary }}>Contract Compliance Report</p>
-              <h2 style={{ fontFamily: 'Playfair Display, serif', margin: '0 0 4px', fontSize: 20, fontWeight: 600, color: C.charcoal }}>Service Agreement — Maple Leaf Construction Ltd.</h2>
+              <h2 style={{ fontFamily: 'Playfair Display, serif', margin: '0 0 2px', fontSize: 20, fontWeight: 600, color: C.charcoal }}>Service Agreement — Definitely-Not-Evil-Corp Inc.</h2>
+              <p style={{ margin: '0 0 8px', fontSize: 12, color: C.textTertiary }}>Counterparty: Maple Leaf Construction Ltd.</p>
               <p style={{ margin: '0 0 10px', fontSize: 13, color: C.textSecondary }}>Report generated: September 22, 2025</p>
-              <p style={{ margin: 0, fontSize: 14, color: C.gold, fontWeight: 500 }}>8 of 10 obligations fulfilled — 1 unresolved breach</p>
+              <p style={{ margin: 0, fontSize: 14, color: '#758bfd', fontWeight: 500 }}>8 of 10 obligations fulfilled — 1 unresolved breach</p>
             </div>
           </div>
 
@@ -886,7 +1008,7 @@ export default function AccordAlert() {
               { label: 'Fulfilled',         value: 8,  color: C.green },
               { label: 'Breached',          value: 1,  color: C.red },
               { label: 'Cured',             value: 1,  color: C.blue },
-              { label: 'Total Obligations', value: 10, color: C.gold },
+              { label: 'Total Obligations', value: 10, color: '#758bfd' },
             ].map((s) => (
               <div key={s.label} style={{ background: C.white, border: `1px solid ${C.lightGray}`, borderLeft: `4px solid ${s.color}`, borderRadius: 8, padding: '16px 18px' }}>
                 <p style={{ margin: 0, fontSize: 28, fontWeight: 700, color: C.charcoal }}>{s.value}</p>
@@ -896,7 +1018,7 @@ export default function AccordAlert() {
           </div>
 
           {/* Obligation breakdown */}
-          <div style={{ background: C.white, border: `1px solid ${C.lightGray}`, borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+          <div id="section-breakdown" style={{ background: C.white, border: `1px solid ${C.lightGray}`, borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
             <div style={{ padding: '16px 20px', borderBottom: `1px solid ${C.lightGray}` }}>
               <h3 style={{ fontFamily: 'Playfair Display, serif', margin: 0, fontSize: 16, fontWeight: 600, color: C.charcoal }}>Obligation Breakdown</h3>
             </div>
@@ -917,7 +1039,7 @@ export default function AccordAlert() {
                       <td style={{ padding: '12px 16px', fontSize: 12, color: C.textSecondary, whiteSpace: 'nowrap' }}>{obl.party}</td>
                       <td style={{ padding: '12px 16px', fontSize: 12, color: C.textSecondary, whiteSpace: 'nowrap' }}>{obl.deadline.length > 30 ? obl.deadline.slice(0, 28) + '…' : obl.deadline}</td>
                       <td style={{ padding: '12px 16px' }}>
-                        <span style={{ background: fs.bg, color: fs.color, border: `1px solid ${fs.color}30`, borderRadius: 999, padding: '2px 10px', fontSize: 11, fontWeight: 600 }}>
+                        <span style={{ background: fs.bg, color: fs.color, border: `1px solid ${fs.color}55`, borderRadius: 999, padding: '2px 10px', fontSize: 11, fontWeight: 700 }}>
                           {fs.label}
                         </span>
                       </td>
@@ -929,6 +1051,7 @@ export default function AccordAlert() {
           </div>
 
           {/* Breach analysis */}
+          <div id="section-breach">
           <h3 style={{ fontFamily: 'Playfair Display, serif', fontSize: 18, fontWeight: 600, color: C.charcoal, margin: '0 0 16px' }}>Breach Impact Analysis</h3>
 
           {/* Card 1 — UNRESOLVED BREACH */}
@@ -945,7 +1068,7 @@ export default function AccordAlert() {
 
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, marginBottom: 16 }}>
               <div style={{ background: C.bgSecondary, border: `1px solid ${C.lightGray}`, borderRadius: 8, padding: '14px 16px' }}>
-                <p style={{ margin: '0 0 8px', fontSize: 11, fontWeight: 700, color: C.gold, textTransform: 'uppercase' as const, letterSpacing: 0.8 }}>Financial Impact</p>
+                <p style={{ margin: '0 0 8px', fontSize: 11, fontWeight: 700, color: '#758bfd', textTransform: 'uppercase' as const, letterSpacing: 0.8 }}>Financial Impact</p>
                 <p style={{ margin: '0 0 4px', fontSize: 12, color: C.textSecondary }}>Estimated daily delay cost: <span style={{ color: C.textPrimary, fontWeight: 500 }}>$2,500</span> (extended temporary office rental)</p>
                 <p style={{ margin: '0 0 4px', fontSize: 12, color: C.textSecondary }}>Total delay exposure (22 days): <span style={{ color: C.red, fontWeight: 600 }}>$55,000</span></p>
                 <p style={{ margin: 0, fontSize: 12, color: C.textSecondary }}>Final payment of <span style={{ color: C.textPrimary, fontWeight: 500 }}>$75,000 withheld</span> pending resolution under Article 2.6(c)</p>
@@ -971,7 +1094,7 @@ export default function AccordAlert() {
               </button>
               <button
                 onClick={() => setDamagesInitiated((v) => !v)}
-                style={{ background: damagesInitiated ? 'rgba(42,157,106,0.08)' : 'rgba(204,164,59,0.08)', border: `1px solid ${damagesInitiated ? C.green : C.gold}`, borderRadius: 999, color: damagesInitiated ? C.green : C.gold, cursor: 'pointer', fontFamily: 'Inter, sans-serif', fontSize: 13, fontWeight: 500, padding: '8px 16px' }}>
+                style={{ background: damagesInitiated ? 'rgba(42,157,106,0.08)' : 'rgba(117,139,253,0.08)', border: `1px solid ${damagesInitiated ? C.green : '#758bfd'}`, borderRadius: 999, color: damagesInitiated ? C.green : '#758bfd', cursor: 'pointer', fontFamily: 'Inter, sans-serif', fontSize: 13, fontWeight: 500, padding: '8px 16px' }}>
                 {damagesInitiated ? '✓ Damages Assessment Initiated' : 'Calculate Total Damages'}
               </button>
             </div>
@@ -1000,22 +1123,24 @@ export default function AccordAlert() {
             </div>
 
             <div style={{ background: 'rgba(204,164,59,0.06)', border: '1px solid rgba(204,164,59,0.18)', borderRadius: 8, padding: '12px 16px', marginTop: 12 }}>
-              <p style={{ margin: '0 0 6px', fontSize: 11, fontWeight: 700, color: C.gold, textTransform: 'uppercase' as const, letterSpacing: 0.8 }}>Lessons Learned</p>
+              <p style={{ margin: '0 0 6px', fontSize: 11, fontWeight: 700, color: '#758bfd', textTransform: 'uppercase' as const, letterSpacing: 0.8 }}>Lessons Learned</p>
               <p style={{ margin: 0, fontSize: 12, color: C.textSecondary, lineHeight: 1.5 }}>AccordAlert first flagged a late report on April 25 (3 days late) — 7 weeks before the June breach. Earlier intervention and stricter automated follow-ups at the first warning could have prevented the June missed report entirely.</p>
             </div>
           </div>
 
+          </div>{/* end section-breach */}
+
           {/* Prevention insights */}
-          <div style={{ background: C.white, border: `1px solid ${C.lightGray}`, borderRadius: 8, padding: 22, marginBottom: 24 }}>
+          <div id="section-prevention" style={{ background: C.white, border: `1px solid ${C.lightGray}`, borderRadius: 8, padding: 22, marginBottom: 24 }}>
             <h3 style={{ fontFamily: 'Playfair Display, serif', margin: '0 0 16px', fontSize: 16, fontWeight: 600, color: C.charcoal }}>How AccordAlert Prevented Escalation</h3>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
               {[
-                { icon: '⚑', color: C.gold, title: 'Early Warning Detection', desc: 'AccordAlert flagged the late April 25 progress report 7 weeks before the June breach. Earlier intervention could have prevented the breach entirely.' },
+                { icon: '⚑', color: '#758bfd', title: 'Early Warning Detection', desc: 'AccordAlert flagged the late April 25 progress report 7 weeks before the June breach. Earlier intervention could have prevented the breach entirely.' },
                 { icon: '◷', color: C.blue, title: 'Cure Period Management', desc: 'Automated breach notice generation and cure period tracking ensured the June reporting breach was resolved within the legal timeframe under Article 3.1.' },
-                { icon: '◈', color: C.gold, title: 'Financial Exposure Tracking', desc: 'Real-time monitoring of the completion deadline allowed Definitely-Not-Evil-Corp to withhold the $75,000 final payment and prepare legal strategy before the cure period expired.' },
+                { icon: '◈', color: '#758bfd', title: 'Financial Exposure Tracking', desc: 'Real-time monitoring of the completion deadline allowed Definitely-Not-Evil-Corp to withhold the $75,000 final payment and prepare legal strategy before the cure period expired.' },
               ].map((item) => (
                 <div key={item.title} style={{ display: 'flex', gap: 14, alignItems: 'flex-start', background: C.bgTertiary, border: `1px solid ${C.lightGray}`, borderRadius: 8, padding: '14px 16px' }}>
-                  <div style={{ width: 32, height: 32, background: 'rgba(204,164,59,0.1)', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, color: C.gold, flexShrink: 0 }}>{item.icon}</div>
+                  <div style={{ width: 32, height: 32, background: 'rgba(204,164,59,0.1)', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, color: '#758bfd', flexShrink: 0 }}>{item.icon}</div>
                   <div>
                     <p style={{ margin: '0 0 4px', fontSize: 13, fontWeight: 600, color: C.charcoal }}>{item.title}</p>
                     <p style={{ margin: 0, fontSize: 12, color: C.textSecondary, lineHeight: 1.55 }}>{item.desc}</p>
@@ -1026,8 +1151,8 @@ export default function AccordAlert() {
           </div>
 
           {/* Legal framework footer */}
-          <div style={{ background: 'rgba(204,164,59,0.06)', border: '1px solid rgba(204,164,59,0.18)', borderRadius: 8, padding: '22px 24px' }}>
-            <h3 style={{ fontFamily: 'Playfair Display, serif', margin: '0 0 12px', fontSize: 16, fontWeight: 600, color: C.gold }}>Compliance Framework Reference</h3>
+          <div id="section-legal" style={{ background: 'rgba(117,139,253,0.06)', border: '1px solid rgba(117,139,253,0.18)', borderRadius: 8, padding: '22px 24px' }}>
+            <h3 style={{ fontFamily: 'Playfair Display, serif', margin: '0 0 12px', fontSize: 16, fontWeight: 600, color: '#758bfd' }}>Compliance Framework Reference</h3>
             <p style={{ margin: 0, fontSize: 13, color: C.textSecondary, lineHeight: 1.75 }}>
               This report is prepared for the management of Definitely-Not-Evil-Corp Inc. Under <em>Hadley v Baxendale</em> (1854), damages for breach of contract are limited to losses reasonably foreseeable at the time of contracting. Under <em>Hamilton v Open Window Bakery Ltd</em> (2004 SCC 9), premature cessation of contractual performance gives rise to breach liability. AccordAlert helps businesses monitor obligations, enforce cure periods, and document compliance to minimize legal risk and protect against preventable breaches.
             </p>
